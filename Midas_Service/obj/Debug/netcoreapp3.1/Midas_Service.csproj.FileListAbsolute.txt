@@ -1,0 +1,17 @@
+C:\Projects\Midas\Midas_Service\bin\Debug\netcoreapp3.1\Midas_Data.dll
+C:\Projects\Midas\Midas_Service\bin\Debug\netcoreapp3.1\Midas_Models.dll
+C:\Projects\Midas\Midas_Service\obj\Debug\netcoreapp3.1\Midas_Service.csprojAssemblyReference.cache
+C:\Projects\Midas\Midas_Service\obj\Debug\netcoreapp3.1\Midas_Service.AssemblyInfoInputs.cache
+C:\Projects\Midas\Midas_Service\obj\Debug\netcoreapp3.1\Midas_Service.AssemblyInfo.cs
+C:\Projects\Midas\Midas_Service\bin\Debug\netcoreapp3.1\Midas_Service.deps.json
+C:\Projects\Midas\Midas_Service\bin\Debug\netcoreapp3.1\Midas_Service.runtimeconfig.json
+C:\Projects\Midas\Midas_Service\bin\Debug\netcoreapp3.1\Midas_Service.runtimeconfig.dev.json
+C:\Projects\Midas\Midas_Service\bin\Debug\netcoreapp3.1\Midas_Service.dll
+C:\Projects\Midas\Midas_Service\bin\Debug\netcoreapp3.1\Midas_Service.pdb
+C:\Projects\Midas\Midas_Service\bin\Debug\netcoreapp3.1\Midas_Data.pdb
+C:\Projects\Midas\Midas_Service\bin\Debug\netcoreapp3.1\Midas_Models.pdb
+C:\Projects\Midas\Midas_Service\obj\Debug\netcoreapp3.1\Midas_Service.csproj.CopyComplete
+C:\Projects\Midas\Midas_Service\obj\Debug\netcoreapp3.1\Midas_Service.dll
+C:\Projects\Midas\Midas_Service\obj\Debug\netcoreapp3.1\Midas_Service.pdb
+C:\Projects\Midas\Midas_Service\obj\Debug\netcoreapp3.1\Midas_Service.genruntimeconfig.cache
+C:\Projects\Midas\Midas_Service\obj\Debug\netcoreapp3.1\Midas_Service.csproj.CoreCompileInputs.cache

@@ -1,0 +1,12 @@
+C:\Projects\Midas\Midas_Models\bin\Debug\netcoreapp3.1\Midas_Models.deps.json
+C:\Projects\Midas\Midas_Models\bin\Debug\netcoreapp3.1\Midas_Models.dll
+C:\Projects\Midas\Midas_Models\obj\Debug\netcoreapp3.1\Midas_Models.csprojAssemblyReference.cache
+C:\Projects\Midas\Midas_Models\obj\Debug\netcoreapp3.1\Midas_Models.AssemblyInfoInputs.cache
+C:\Projects\Midas\Midas_Models\obj\Debug\netcoreapp3.1\Midas_Models.AssemblyInfo.cs
+C:\Projects\Midas\Midas_Models\bin\Debug\netcoreapp3.1\Midas_Models.runtimeconfig.json
+C:\Projects\Midas\Midas_Models\bin\Debug\netcoreapp3.1\Midas_Models.runtimeconfig.dev.json
+C:\Projects\Midas\Midas_Models\bin\Debug\netcoreapp3.1\Midas_Models.pdb
+C:\Projects\Midas\Midas_Models\obj\Debug\netcoreapp3.1\Midas_Models.dll
+C:\Projects\Midas\Midas_Models\obj\Debug\netcoreapp3.1\Midas_Models.pdb
+C:\Projects\Midas\Midas_Models\obj\Debug\netcoreapp3.1\Midas_Models.genruntimeconfig.cache
+C:\Projects\Midas\Midas_Models\obj\Debug\netcoreapp3.1\Midas_Models.csproj.CoreCompileInputs.cache
