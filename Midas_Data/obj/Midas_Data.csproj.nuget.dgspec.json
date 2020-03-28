@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projects\\Midas\\Midas_Data\\Midas_Data.csproj": {}
+    "C:\\Projects\\Midas\\Midas_MVC\\Midas_Data\\Midas_Data.csproj": {}
   },
   "projects": {
-    "C:\\Projects\\Midas\\Midas_Data\\Midas_Data.csproj": {
+    "C:\\Projects\\Midas\\Midas_MVC\\Midas_Data\\Midas_Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\Midas\\Midas_Data\\Midas_Data.csproj",
+        "projectUniqueName": "C:\\Projects\\Midas\\Midas_MVC\\Midas_Data\\Midas_Data.csproj",
         "projectName": "Midas_Data",
-        "projectPath": "C:\\Projects\\Midas\\Midas_Data\\Midas_Data.csproj",
+        "projectPath": "C:\\Projects\\Midas\\Midas_MVC\\Midas_Data\\Midas_Data.csproj",
         "packagesPath": "C:\\Users\\gngo2\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\Midas\\Midas_Data\\obj\\",
+        "outputPath": "C:\\Projects\\Midas\\Midas_MVC\\Midas_Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -45,6 +45,10 @@
             "AutoMapper": {
               "target": "Package",
               "version": "[9.0.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.2, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",

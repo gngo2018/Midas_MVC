@@ -10,3 +10,15 @@ C:\Projects\Midas\Midas_Data\obj\Debug\netcoreapp3.1\Midas_Data.dll
 C:\Projects\Midas\Midas_Data\obj\Debug\netcoreapp3.1\Midas_Data.pdb
 C:\Projects\Midas\Midas_Data\obj\Debug\netcoreapp3.1\Midas_Data.genruntimeconfig.cache
 C:\Projects\Midas\Midas_Data\obj\Debug\netcoreapp3.1\Midas_Data.csproj.CoreCompileInputs.cache
+C:\Projects\Midas\Midas_MVC\Midas_Data\bin\Debug\netcoreapp3.1\Midas_Data.deps.json
+C:\Projects\Midas\Midas_MVC\Midas_Data\bin\Debug\netcoreapp3.1\Midas_Data.runtimeconfig.json
+C:\Projects\Midas\Midas_MVC\Midas_Data\bin\Debug\netcoreapp3.1\Midas_Data.runtimeconfig.dev.json
+C:\Projects\Midas\Midas_MVC\Midas_Data\bin\Debug\netcoreapp3.1\Midas_Data.dll
+C:\Projects\Midas\Midas_MVC\Midas_Data\bin\Debug\netcoreapp3.1\Midas_Data.pdb
+C:\Projects\Midas\Midas_MVC\Midas_Data\obj\Debug\netcoreapp3.1\Midas_Data.csprojAssemblyReference.cache
+C:\Projects\Midas\Midas_MVC\Midas_Data\obj\Debug\netcoreapp3.1\Midas_Data.AssemblyInfoInputs.cache
+C:\Projects\Midas\Midas_MVC\Midas_Data\obj\Debug\netcoreapp3.1\Midas_Data.AssemblyInfo.cs
+C:\Projects\Midas\Midas_MVC\Midas_Data\obj\Debug\netcoreapp3.1\Midas_Data.dll
+C:\Projects\Midas\Midas_MVC\Midas_Data\obj\Debug\netcoreapp3.1\Midas_Data.pdb
+C:\Projects\Midas\Midas_MVC\Midas_Data\obj\Debug\netcoreapp3.1\Midas_Data.genruntimeconfig.cache
+C:\Projects\Midas\Midas_MVC\Midas_Data\obj\Debug\netcoreapp3.1\Midas_Data.csproj.CoreCompileInputs.cache

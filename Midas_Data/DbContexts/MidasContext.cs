@@ -1,10 +1,12 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Midas_Data.Entities;
 
 namespace Midas_Data.Models
 {
-    public partial class MidasContext : DbContext
+    public partial class MidasContext : IdentityDbContext<ApplicationUser>
     {
         public MidasContext()
         {
@@ -32,6 +34,8 @@ namespace Midas_Data.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<BudgetBoard>(entity =>
             {
                 entity.HasKey(e => e.BudgetBoardId);

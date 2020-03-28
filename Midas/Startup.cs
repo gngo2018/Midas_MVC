@@ -6,12 +6,14 @@ using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Midas.MappingProfiles;
+using Midas_Data.Entities;
 using Midas_Data.Models;
 using Midas_Service.Interfaces;
 using Midas_Service.Services;
@@ -33,6 +35,11 @@ namespace Midas
             services.AddControllersWithViews();
 
             services.AddScoped<IExpenseService, ExpenseService>();
+
+            services.AddScoped<IAccountService, AccountService>();
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<MidasContext>();
 
             services.AddDbContext<MidasContext>
                 (options => options.UseSqlServer(
