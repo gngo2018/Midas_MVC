@@ -352,3 +352,8 @@ C:\Projects\Midas\Midas_MVC\Midas\obj\Debug\netcoreapp3.1\Razor\Views\Account\Cr
 C:\Projects\Midas\Midas_MVC\Midas\obj\Debug\netcoreapp3.1\Razor\Views\Account\Details.cshtml.g.cs
 C:\Projects\Midas\Midas_MVC\Midas\obj\Debug\netcoreapp3.1\Razor\Views\Account\Delete.cshtml.g.cs
 C:\Projects\Midas\Midas_MVC\Midas\obj\Debug\netcoreapp3.1\Razor\Views\Account\Edit.cshtml.g.cs
+C:\Projects\Midas\Midas_MVC\Midas\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Create.cshtml.g.cs
+C:\Projects\Midas\Midas_MVC\Midas\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Index.cshtml.g.cs
+C:\Projects\Midas\Midas_MVC\Midas\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Delete.cshtml.g.cs
+C:\Projects\Midas\Midas_MVC\Midas\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Details.cshtml.g.cs
+C:\Projects\Midas\Midas_MVC\Midas\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Edit.cshtml.g.cs

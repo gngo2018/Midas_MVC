@@ -58,9 +58,10 @@ namespace Midas.Controllers
 
                 throw new Exception();
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                ModelState.AddModelError("", e.Message);
+                return View(request);
             }
         }
 
@@ -88,8 +89,10 @@ namespace Midas.Controllers
 
                 throw new Exception();
             }
-            catch
+            catch (Exception e)
             {
+                ModelState.AddModelError("", e.Message);
+
                 return View(request);
             }
         }
@@ -118,8 +121,9 @@ namespace Midas.Controllers
                 }
                 throw new Exception();
             }
-            catch
+            catch (Exception e)
             {
+                ModelState.AddModelError("", e.Message);
                 return View("Delete");
             }
         }

@@ -35,8 +35,8 @@ namespace Midas
             services.AddControllersWithViews();
 
             services.AddScoped<IExpenseService, ExpenseService>();
-
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IAdminService, AdminService>();
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<MidasContext>();

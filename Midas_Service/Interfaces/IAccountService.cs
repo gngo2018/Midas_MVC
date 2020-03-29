@@ -11,10 +11,10 @@ namespace Midas_Service.Interfaces
     public interface IAccountService
     {
         Task<bool> CreateUser(UserCreate request);
-        IQueryable<ApplicationUser> GetUsers();
-        Task<ApplicationUser> GetUserById(string id);
         Task<bool> DeleteUser(string id);
         Task<bool> EditUser(ApplicationUser request);
+        IQueryable<ApplicationUser> GetUsers();
+        Task<ApplicationUser> GetUserById(string id);
 
     }
 }

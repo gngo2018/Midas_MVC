@@ -60,11 +60,11 @@ namespace Midas_Service.Services
         {
             var user = await GetUserById(request.Id);
 
-            request.Id = user.Id;
-            request.UserName = user.UserName;
-            request.Email = user.Email;
-            request.FirstName = user.FirstName;
-            request.LastName = user.LastName;
+            user.Id = request.Id;
+            user.UserName = request.UserName;
+            user.Email = request.Email;
+            user.FirstName = request.FirstName;
+            user.LastName = request.LastName;
 
             var result = await _userManager.UpdateAsync(user);
 
