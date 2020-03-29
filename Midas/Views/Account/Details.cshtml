@@ -1,4 +1,4 @@
-﻿@model Midas_Data.Entities.ApplicationUser
+﻿@model Midas_Models.Accounts.UserDetail
 
 @{
     ViewData["Title"] = "Details";
@@ -42,6 +42,35 @@
         </dd>
     </dl>
 </div>
+
+<div class="card">
+    <div class="card-header">
+        <h3>User Roles:</h3>
+    </div>
+    <div class="card-body">
+        <ul>
+            @if (Model.Roles.Any())
+            {
+                foreach (var role in Model.Roles)
+                {
+                    <li>
+                        <h5 class="card-title">@role</h5>
+                    </li>
+                }
+            }
+            else
+            {
+                <li>
+                    <h5 class="card-title">This user has not been assigned a role</h5>
+                </li>
+            }
+        </ul>
+    </div>
+    <div class="card-footer">
+        <a asp-controller="Admin" asp-action="Index" class="btn btn-primary" style="width:auto">Role List</a>
+    </div>
+</div>
+
 <div>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     <a asp-action="Index">Back to List</a>

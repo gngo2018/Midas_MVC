@@ -16,16 +16,18 @@ namespace Midas.Controllers
     public class AdminController : Controller
     {
         private readonly IAdminService _adminService;
+        private readonly IAccountService _accountService;
         private readonly UserManager<ApplicationUser> _userManager;
-        public AdminController(IAdminService adminService, UserManager<ApplicationUser> userManager)
+        public AdminController(IAdminService adminService, IAccountService accountService, UserManager<ApplicationUser> userManager)
         {
             _adminService = adminService;
+            _accountService = accountService;
             _userManager = userManager;
         }
         // GET: Admin
         public ActionResult Index()
         {
-            var roles = _adminService.GetUserRoles();
+            var roles = _adminService.GetRoles();
 
             return View(roles);
         }
@@ -33,7 +35,7 @@ namespace Midas.Controllers
         // GET: Admin/Details/5
         public async Task<IActionResult> Details(string id)
         {
-            var role = await _adminService.GetUserRoleById(id);
+            var role = await _adminService.GetRoleById(id);
 
             return View(role);
         }
@@ -47,13 +49,13 @@ namespace Midas.Controllers
         // POST: Admin/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateUserRole(UserRoleCreate request)
+        public async Task<IActionResult> CreateRole(RoleCreate request)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var userRoleRequest = await _adminService.CreateUserRole(request);
+                    var userRoleRequest = await _adminService.CreateRole(request);
 
                     if (userRoleRequest =!false)
                     {
@@ -73,9 +75,9 @@ namespace Midas.Controllers
         // GET: Admin/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
-            var role = await _adminService.GetUserRoleById(id);
+            var role = await _adminService.GetRoleById(id);
 
-            var roleViewModel = new UserRoleEdit
+            var roleViewModel = new RoleEdit
             {
                 Id = role.Id,
                 RoleName = role.Name
@@ -95,7 +97,7 @@ namespace Midas.Controllers
         // POST: Admin/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditUserRole(UserRoleEdit request)
+        public async Task<IActionResult> EditRole(RoleEdit request)
         {
             try
             {
@@ -105,7 +107,7 @@ namespace Midas.Controllers
                     Name = request.RoleName
                 };
 
-                var result = await _adminService.EditUserRole(identityRoleRequest);
+                var result = await _adminService.EditRole(identityRoleRequest);
 
                 if (result =!false)
                 {
@@ -123,7 +125,7 @@ namespace Midas.Controllers
         // GET: Admin/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
-            var role = await _adminService.GetUserRoleById(id);
+            var role = await _adminService.GetRoleById(id);
 
             return View(role);
         }
@@ -131,11 +133,11 @@ namespace Midas.Controllers
         // POST: Admin/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task <IActionResult> DeleteUserRole(string id)
+        public async Task <IActionResult> DeleteRole(string id)
         {
             try
             {
-                var result = await _adminService.DeleteUserRole(id);
+                var result = await _adminService.DeleteRole(id);
 
                 if (result =!false)
                 {
@@ -149,6 +151,51 @@ namespace Midas.Controllers
                 ModelState.AddModelError("Unable to delete role: ", e.Message);
                 return View();
             }
+        }
+
+        //Managing User Roles
+        [HttpGet]
+        public async Task<IActionResult> ManageUserRoles(string userId, string userName)
+        {
+            ViewBag.userId = userId;
+            ViewBag.userName = userName;
+
+            var user = await _accountService.GetUserById(userId);
+            var model = new List<UserRoleManager>();
+
+            foreach (var role in await _adminService.GetRoles().ToListAsync())
+            {
+                var userRoleManager = new UserRoleManager
+                {
+                    RoleId = role.Id,
+                    RoleName = role.Name
+                };
+
+                if (await _userManager.IsInRoleAsync(user, role.Name))
+                {
+                    userRoleManager.IsSelected = true;
+                }
+                else
+                {
+                    userRoleManager.IsSelected = false;
+                }
+
+                model.Add(userRoleManager);
+            }
+
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> ManageUserRoles(List<UserRoleManager> request, string userId)
+        {
+            var result = await _adminService.ManageUserRole(request, userId);
+
+            if (result =!false)
+            {
+                return RedirectToAction("Index", "Account");
+            }
+
+            throw new Exception();
         }
     }
 }

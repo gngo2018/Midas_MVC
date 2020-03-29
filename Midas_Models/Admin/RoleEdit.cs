@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Midas_Models.Admin
 {
-    public class UserRoleEdit
+    public class RoleEdit
     {
-        public UserRoleEdit()
+        public RoleEdit()
         {
             Users = new List<string>();
         }

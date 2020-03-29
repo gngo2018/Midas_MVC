@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Midas_Data.Entities;
 using Midas_Models.Accounts;
 using Midas_Service.Interfaces;
@@ -14,10 +15,12 @@ namespace Midas.Controllers
     public class AccountController : Controller
     {
         private readonly IAccountService _accountService;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public AccountController(IAccountService accountService)
+        public AccountController(IAccountService accountService, UserManager<ApplicationUser> userManager)
         {
             _accountService = accountService;
+            _userManager = userManager;
         }
         // GET: Account
         public ActionResult Index()
@@ -31,8 +34,20 @@ namespace Midas.Controllers
         public async Task<IActionResult> Details(string id)
         {
             var user = await _accountService.GetUserById(id);
+            var userRoles = await _userManager.GetRolesAsync(user);
 
-            return View(user);
+            var userViewModel = new UserDetail
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                LastLogin = user.LastLogin,
+                Roles = userRoles
+            };
+
+            return View(userViewModel);
         }
 
         // GET: Account/Create

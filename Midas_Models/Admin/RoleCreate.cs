@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Midas_Models.Admin
 {
-    public class UserRoleCreate
+    public class RoleCreate
     {
         [Required]
         [Display(Name = "Role Name")]
