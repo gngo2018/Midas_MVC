@@ -41,6 +41,14 @@ namespace Midas
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<MidasContext>();
 
+            //services.ConfigureApplicationCookie(options =>
+            //{
+            //    // Cookie settings
+            //    options.Cookie.HttpOnly = true;
+            //    options.Cookie.Expiration = TimeSpan(1);
+            //    options.SlidingExpiration = true;
+            //});
+
             services.AddDbContext<MidasContext>
                 (options => options.UseSqlServer(
                     Configuration.GetConnectionString("MidasDatabase")
@@ -86,6 +94,8 @@ namespace Midas
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {

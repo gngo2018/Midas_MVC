@@ -15,6 +15,8 @@ namespace Midas_Service.Interfaces
         Task<bool> EditUser(ApplicationUser request);
         IQueryable<ApplicationUser> GetUsers();
         Task<ApplicationUser> GetUserById(string id);
+        Task<bool> LoginUser(UserLogin credentials);
+
 
     }
 }

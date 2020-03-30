@@ -90,5 +90,22 @@ namespace Midas_Service.Services
 
             return userList;
         }
+
+        public async Task<bool>LoginUser(UserLogin credentials)
+        {
+            var result = await _signInManager.PasswordSignInAsync(
+                credentials.UserName, credentials.Password, credentials.RememberMe, false);
+
+            if (result.Succeeded)
+            {
+                var user = await _userManager.FindByNameAsync(credentials.UserName);
+                user.LastLogin = DateTime.Now;
+                await _userManager.UpdateAsync(user);
+
+                return true;
+            }
+
+            return false;
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Midas_Data.Entities;
 using Midas_Models.Accounts;
@@ -16,12 +17,57 @@ namespace Midas.Controllers
     {
         private readonly IAccountService _accountService;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public AccountController(IAccountService accountService, UserManager<ApplicationUser> userManager)
+        public AccountController(IAccountService accountService, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             _accountService = accountService;
             _userManager = userManager;
+            _signInManager = signInManager;
         }
+
+        //GET: Login
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        //GET: Post
+        [HttpPost]
+        public async Task<IActionResult> Login(UserLogin credentials)
+        {
+            try
+            {
+                var result = await _accountService.LoginUser(credentials);
+
+                if (result == true)
+                {
+                    return RedirectToAction("Index","Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "User Name or Password is incorrect");
+                    return View(credentials);
+                }
+            }
+            
+            catch (Exception e)
+            {
+                ModelState.AddModelError("User Name or Password is incorrect", e.Message);
+                return View(credentials);
+            }
+            throw new Exception();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+
+            return RedirectToAction("Login");
+        }
+
         // GET: Account
         public ActionResult Index()
         {
