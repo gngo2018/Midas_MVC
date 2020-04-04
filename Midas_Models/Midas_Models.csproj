@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="BudgetBoard\" />
     <Folder Include="MonthlyBudgetBoard\" />
   </ItemGroup>
 

@@ -1,0 +1,53 @@
+﻿@model Midas.ViewModels.BudgetBoardCreateViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Create Your Budget Board</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="BudgetBoardName" class="control-label"></label>
+                <input asp-for="BudgetBoardName" class="form-control" />
+                <span asp-validation-for="BudgetBoardName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MonthlyIncome" class="control-label"></label>
+                <input asp-for="MonthlyIncome" class="form-control" />
+                <span asp-validation-for="MonthlyIncome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LivingPercentage" class="control-label"></label>
+                <input asp-for="LivingPercentage" class="form-control" />
+                <span asp-validation-for="LivingPercentage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SavingsPercentage" class="control-label"></label>
+                <input asp-for="SavingsPercentage" class="form-control" />
+                <span asp-validation-for="SavingsPercentage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LeisurePercentage" class="control-label"></label>
+                <input asp-for="LeisurePercentage" class="form-control" />
+                <span asp-validation-for="LeisurePercentage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Midas_Models.BudgetBoard.BudgetBoardListItem>
+
+@{
+    ViewData["Title"] = "Budget Board Index";
+}
+
+<h1>Budget Board Index</h1>
+
+<p>
+    <a asp-action="Create">Create New Board</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BudgetBoardName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MonthlyIncome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LivingAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SavingsAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeisureAmount)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BudgetBoardName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MonthlyIncome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LivingAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SavingsAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LeisureAmount)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

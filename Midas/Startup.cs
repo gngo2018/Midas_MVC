@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
@@ -37,6 +32,7 @@ namespace Midas
             services.AddScoped<IExpenseService, ExpenseService>();
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IAdminService, AdminService>();
+            services.AddScoped<IBudgetBoardService, BudgetBoardService>();
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<MidasContext>();
@@ -58,6 +54,7 @@ namespace Midas
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new ExpenseMappingProfile());
+                mc.AddProfile(new BudgetBoardMappingProfile());
             });
 
             IMapper mapper = mappingConfig.CreateMapper();
