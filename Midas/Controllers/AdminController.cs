@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Midas_Data.Entities;
 using Midas_Models.Admin;
@@ -18,11 +17,14 @@ namespace Midas.Controllers
         private readonly IAdminService _adminService;
         private readonly IAccountService _accountService;
         private readonly UserManager<ApplicationUser> _userManager;
-        public AdminController(IAdminService adminService, IAccountService accountService, UserManager<ApplicationUser> userManager)
+        private readonly RoleManager<IdentityRole> _roleManager;
+        public AdminController(IAdminService adminService, IAccountService accountService, 
+            UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _adminService = adminService;
             _accountService = accountService;
             _userManager = userManager;
+            _roleManager = roleManager;
         }
         // GET: Admin
         public ActionResult Index()
@@ -76,11 +78,13 @@ namespace Midas.Controllers
         public async Task<IActionResult> Edit(string id)
         {
             var role = await _adminService.GetRoleById(id);
+            var roleClaims = await _roleManager.GetClaimsAsync(role);
 
             var roleViewModel = new RoleEdit
             {
                 Id = role.Id,
-                RoleName = role.Name
+                RoleName = role.Name,
+                Claims = roleClaims.Select(c => c.Type).ToList()
             };
 
             foreach(var user in await _userManager.Users.ToListAsync())
@@ -196,6 +200,58 @@ namespace Midas.Controllers
             }
 
             throw new Exception();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ManageRoleClaims(string roleId)
+        {
+            var role = await _roleManager.FindByIdAsync(roleId);
+            ViewBag.roleName = role.Name;
+
+            var roleClaimModel = await _adminService.ManageRoleClaims(roleId); 
+
+            return View(roleClaimModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ManageRoleClaims(RoleClaimView request)
+        {
+            try
+            {
+                var role = await _roleManager.FindByIdAsync(request.RoleId);
+
+                if (role == null)
+                {
+                    ModelState.AddModelError("", "Role was not found");
+                    return View(request);
+                }
+
+                var claims = await _roleManager.GetClaimsAsync(role);
+
+                //Remove all Claims from Role
+                foreach (var claim in claims)
+                {
+                    var result = await _roleManager.RemoveClaimAsync(role, claim);
+
+                }
+
+                var selectedClaims = request.Claims.Where(c => c.IsSelected).Select(c => new Claim(c.ClaimType, c.ClaimType));
+
+                //Add Checked Claims to Role
+                foreach (var claim in selectedClaims)
+                {
+                    await _roleManager.AddClaimAsync(role, claim);
+                }
+
+                return RedirectToAction("Edit", new { id = request.RoleId });
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("", "Unable to add claim to role");
+                ModelState.AddModelError("", e.Message);
+
+                return View(request);
+            }
         }
     }
 }

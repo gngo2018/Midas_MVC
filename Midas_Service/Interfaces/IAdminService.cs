@@ -17,7 +17,7 @@ namespace Midas_Service.Interfaces
         Task<bool> EditRole(IdentityRole request);
         Task<bool> DeleteRole(string id);
         Task<bool> ManageUserRole(List<UserRoleManager> request, string userId);
-
+        Task<RoleClaimView> ManageRoleClaims(string roleId);
 
     }
 }

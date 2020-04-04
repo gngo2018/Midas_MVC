@@ -85,6 +85,35 @@ namespace Midas_Service.Services
             return roles;
         }
 
+        public async Task<RoleClaimView> ManageRoleClaims(string roleId)
+        {
+            var role = await _roleManager.FindByIdAsync(roleId);
+
+            var existingRoleClaims = await _roleManager.GetClaimsAsync(role);
+
+            var model = new RoleClaimView
+            {
+                RoleId = roleId
+            };
+
+            foreach (var claim in ClaimsRepository.AllClaims)
+            {
+                RoleClaim roleClaim = new RoleClaim
+                {
+                    ClaimType = claim.Type
+                };
+
+                if (existingRoleClaims.Any(c => c.Type == claim.Type))
+                {
+                    roleClaim.IsSelected = true;
+                }
+
+                model.Claims.Add(roleClaim);
+            }
+
+            return model;
+        }
+
         public async Task<bool> ManageUserRole(List<UserRoleManager> request, string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);

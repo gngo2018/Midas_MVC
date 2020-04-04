@@ -359,3 +359,4 @@ C:\Projects\Midas\Midas_MVC\Midas\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Deta
 C:\Projects\Midas\Midas_MVC\Midas\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Edit.cshtml.g.cs
 C:\Projects\Midas\Midas_MVC\Midas\obj\Debug\netcoreapp3.1\Razor\Views\Admin\ManageUserRoles.cshtml.g.cs
 C:\Projects\Midas\Midas_MVC\Midas\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
+C:\Projects\Midas\Midas_MVC\Midas\obj\Debug\netcoreapp3.1\Razor\Views\Admin\ManageRoleClaims.cshtml.g.cs
