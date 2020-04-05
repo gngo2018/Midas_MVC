@@ -224,6 +224,25 @@ namespace Midas_Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("Midas_Data.Entities.MonthlyExpense", b =>
+                {
+                    b.Property<int>("MonthlyExpenseId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<double>("BillAmount")
+                        .HasColumnType("float");
+
+                    b.Property<string>("BillName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MonthlyExpenseId");
+
+                    b.ToTable("MonthlyExpense");
+                });
+
             modelBuilder.Entity("Midas_Data.Models.BudgetBoard", b =>
                 {
                     b.Property<int>("BudgetBoardId")
@@ -263,9 +282,9 @@ namespace Midas_Data.Migrations
                     b.ToTable("BudgetBoard");
                 });
 
-            modelBuilder.Entity("Midas_Data.Models.BudgetBoardExpense", b =>
+            modelBuilder.Entity("Midas_Data.Models.BudgetBoardMonthlyExpense", b =>
                 {
-                    b.Property<int>("BudgetBoardExpenseId")
+                    b.Property<int>("BudgetBoardMonthlyExpenseId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -273,12 +292,12 @@ namespace Midas_Data.Migrations
                     b.Property<int>("BudgetBoardId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ExpenseId")
+                    b.Property<int>("MonthlyExpenseId")
                         .HasColumnType("int");
 
-                    b.HasKey("BudgetBoardExpenseId");
+                    b.HasKey("BudgetBoardMonthlyExpenseId");
 
-                    b.ToTable("BudgetBoardExpense");
+                    b.ToTable("BudgetBoardBills");
                 });
 
             modelBuilder.Entity("Midas_Data.Models.Expense", b =>

@@ -13,9 +13,11 @@ namespace Midas.MappingProfiles
         public ExpenseMappingProfile()
         {
             //Get Mapping
-            CreateMap<Expense, ExpenseGetListItem>();
+            CreateMap<Expense, ExpenseListItem>();
             //Create Mapping
             CreateMap<ExpenseCreate, Expense>();
+            //Update Mapping
+            CreateMap<ExpenseUpdate, Expense>();
         }
     }
 }

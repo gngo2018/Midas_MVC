@@ -362,3 +362,7 @@ C:\Projects\Midas\Midas_MVC\Midas\obj\Debug\netcoreapp3.1\Razor\Views\Account\Lo
 C:\Projects\Midas\Midas_MVC\Midas\obj\Debug\netcoreapp3.1\Razor\Views\Admin\ManageRoleClaims.cshtml.g.cs
 C:\Projects\Midas\Midas_MVC\Midas\obj\Debug\netcoreapp3.1\Razor\Views\BudgetBoard\Index.cshtml.g.cs
 C:\Projects\Midas\Midas_MVC\Midas\obj\Debug\netcoreapp3.1\Razor\Views\BudgetBoard\Create.cshtml.g.cs
+C:\Projects\Midas\Midas_MVC\Midas\obj\Debug\netcoreapp3.1\Razor\Views\Expense\Edit.cshtml.g.cs
+C:\Projects\Midas\Midas_MVC\Midas\obj\Debug\netcoreapp3.1\Razor\Views\Expense\DeleteExpense.cshtml.g.cs
+C:\Projects\Midas\Midas_MVC\Midas\obj\Debug\netcoreapp3.1\Razor\Views\MonthlyExpense\Index.cshtml.g.cs
+C:\Projects\Midas\Midas_MVC\Midas\obj\Debug\netcoreapp3.1\Razor\Views\MonthlyExpense\Create.cshtml.g.cs

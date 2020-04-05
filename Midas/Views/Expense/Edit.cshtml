@@ -1,0 +1,53 @@
+﻿@model Midas_Models.Expenses.ExpenseListItem
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>ExpenseListItem</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ExpenseName" class="control-label"></label>
+                <input asp-for="ExpenseName" class="form-control" />
+                <span asp-validation-for="ExpenseName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpenseAmount" class="control-label"></label>
+                <input asp-for="ExpenseAmount" class="form-control" />
+                <span asp-validation-for="ExpenseAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpenseTypeId" class="control-label"></label>
+                <input asp-for="ExpenseTypeId" class="form-control" />
+                <span asp-validation-for="ExpenseTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpenseDate" class="control-label"></label>
+                <input asp-for="ExpenseDate" class="form-control" />
+                <span asp-validation-for="ExpenseDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+            <div class="form-group" style="visibility:hidden">
+                <label asp-for="ExpenseId" class="control-label"></label>
+                <input asp-for="ExpenseId" class="form-control" />
+                <span asp-validation-for="ExpenseId" class="text-danger"></span>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

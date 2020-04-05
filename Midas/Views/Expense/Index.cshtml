@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Midas_Models.Expenses.ExpenseGetListItem>
+﻿@model IEnumerable<Midas_Models.Expenses.ExpenseListItem>
 
 @{
     ViewData["Title"] = "Index";
@@ -43,9 +43,9 @@
                 @Html.DisplayFor(modelItem => item.ExpenseDate)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", new { id=item.ExpenseId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.ExpenseId }) |
+                @Html.ActionLink("Delete", "DeleteExpense", new { id=item.ExpenseId })
             </td>
         </tr>
 }

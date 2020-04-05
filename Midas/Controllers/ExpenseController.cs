@@ -29,9 +29,18 @@ namespace Midas.Controllers
         }
 
         // GET: Expense/Details/5
-        public ActionResult Details(int id)
+        public async Task <IActionResult> Details(int id)
         {
-            return View();
+            try
+            {
+                var result = await _expenseService.GetExpenseById(id);
+                return View(result);
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("", e.Message);
+                return View("Index");
+            }
         }
 
         // GET: Expense/Create
@@ -64,48 +73,68 @@ namespace Midas.Controllers
         }
 
         // GET: Expense/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            try
+            {
+                var result = await _expenseService.GetExpenseById(id);
+                return View(result);
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("", e.Message);
+                return RedirectToAction("Index");
+            }
         }
 
         // POST: Expense/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(ExpenseUpdate request)
         {
             try
             {
                 // TODO: Add update logic here
+                var result = await _expenseService.UpdateExpense(request);
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                ModelState.AddModelError("", e.Message);
+                return View(request);
             }
         }
 
         // GET: Expense/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> DeleteExpense(int id)
         {
-            return View();
+            try
+            {
+                var result = await _expenseService.GetExpenseById(id);
+                return View(result);
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("", e.Message);
+                return RedirectToAction("Index");
+            }
         }
 
         // POST: Expense/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task <IActionResult> Delete(int id)
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
+                var result = await _expenseService.DeleteExpense(id);
+                return RedirectToAction("Index");
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                ModelState.AddModelError("", e.Message);
+                return RedirectToAction("DeleteExpense", id);
             }
         }
     }

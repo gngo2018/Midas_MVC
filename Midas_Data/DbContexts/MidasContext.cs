@@ -18,11 +18,12 @@ namespace Midas_Data.Models
         }
 
         public virtual DbSet<BudgetBoard> BudgetBoard { get; set; }
-        public virtual DbSet<BudgetBoardBills> BudgetBoardBills { get; set; }
+        public virtual DbSet<BudgetBoardMonthlyExpense> BudgetBoardBills { get; set; }
         public virtual DbSet<Expense> Expense { get; set; }
         public virtual DbSet<ExpenseType> ExpenseType { get; set; }
         public virtual DbSet<MonthlyBudgetBoard> MonthlyBudgetBoard { get; set; }
         public virtual DbSet<MonthlyBudgetExpense> MonthlyBudgetExpense { get; set; }
+        public virtual DbSet<MonthlyExpense> MonthlyExpense { get; set; }
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
@@ -46,9 +47,9 @@ namespace Midas_Data.Models
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<BudgetBoardBills>(entity =>
+            modelBuilder.Entity<BudgetBoardMonthlyExpense>(entity =>
             {
-                entity.HasKey(e => e.BudgetBoardBillsId);
+                entity.HasKey(e => e.BudgetBoardMonthlyExpenseId);
             });
 
             modelBuilder.Entity<Expense>(entity =>

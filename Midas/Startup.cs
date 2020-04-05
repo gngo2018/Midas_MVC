@@ -33,6 +33,7 @@ namespace Midas
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<IBudgetBoardService, BudgetBoardService>();
+            services.AddScoped<IMonthlyExpenseService, MonthlyExpenseService>();
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<MidasContext>();
@@ -55,6 +56,7 @@ namespace Midas
             {
                 mc.AddProfile(new ExpenseMappingProfile());
                 mc.AddProfile(new BudgetBoardMappingProfile());
+                mc.AddProfile(new MonthlyExpenseMappingProfile());
             });
 
             IMapper mapper = mappingConfig.CreateMapper();

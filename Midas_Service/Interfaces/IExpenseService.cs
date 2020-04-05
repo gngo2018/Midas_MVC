@@ -8,7 +8,10 @@ namespace Midas_Service.Interfaces
 {
     public interface IExpenseService
     {
-        Task<IEnumerable<ExpenseGetListItem>> GetExpenses();
+        Task<IEnumerable<ExpenseListItem>> GetExpenses();
+        Task<ExpenseListItem> GetExpenseById(int id);
         Task<bool> CreateExpense(ExpenseCreate request);
+        Task<bool> DeleteExpense(int id);
+        Task<bool> UpdateExpense(ExpenseUpdate request);
     }
 }

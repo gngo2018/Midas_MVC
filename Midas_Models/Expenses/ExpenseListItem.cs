@@ -5,8 +5,9 @@ using System.Text;
 
 namespace Midas_Models.Expenses
 {
-    public class ExpenseGetListItem
+    public class ExpenseListItem
     {
+        public int ExpenseId { get; set; }
         public string ExpenseName { get; set; }
         [DisplayFormat(DataFormatString = "{0:C}")]
 
