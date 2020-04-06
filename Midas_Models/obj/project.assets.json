@@ -1355,6 +1355,22 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "Midas_Data/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "AutoMapper": "9.0.0",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "3.1.2",
+          "Microsoft.EntityFrameworkCore": "3.1.2",
+          "Microsoft.EntityFrameworkCore.SqlServer": "3.1.2"
+        },
+        "compile": {
+          "bin/placeholder/Midas_Data.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Midas_Data.dll": {}
+        }
       }
     }
   },
@@ -5160,6 +5176,11 @@
         "system.xml.xmlserializer.4.3.0.nupkg.sha512",
         "system.xml.xmlserializer.nuspec"
       ]
+    },
+    "Midas_Data/1.0.0": {
+      "type": "project",
+      "path": "../Midas_Data/Midas_Data.csproj",
+      "msbuildProject": "../Midas_Data/Midas_Data.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -5168,7 +5189,8 @@
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 3.1.2",
       "Microsoft.EntityFrameworkCore >= 3.1.2",
       "Microsoft.EntityFrameworkCore.SqlServer >= 3.1.2",
-      "Microsoft.EntityFrameworkCore.Tools >= 3.1.2"
+      "Microsoft.EntityFrameworkCore.Tools >= 3.1.2",
+      "Midas_Data >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -5201,7 +5223,11 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Projects\\Midas\\Midas_MVC\\Midas_Data\\Midas_Data.csproj": {
+              "projectPath": "C:\\Projects\\Midas\\Midas_MVC\\Midas_Data\\Midas_Data.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

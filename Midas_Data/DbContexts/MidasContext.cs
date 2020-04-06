@@ -18,7 +18,7 @@ namespace Midas_Data.Models
         }
 
         public virtual DbSet<BudgetBoard> BudgetBoard { get; set; }
-        public virtual DbSet<BudgetBoardMonthlyExpense> BudgetBoardBills { get; set; }
+        public virtual DbSet<BudgetBoardMonthlyExpense> BudgetBoardMonthlyExpense { get; set; }
         public virtual DbSet<Expense> Expense { get; set; }
         public virtual DbSet<ExpenseType> ExpenseType { get; set; }
         public virtual DbSet<MonthlyBudgetBoard> MonthlyBudgetBoard { get; set; }

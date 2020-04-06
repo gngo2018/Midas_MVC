@@ -110,7 +110,11 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Projects\\Midas\\Midas_MVC\\Midas_Data\\Midas_Data.csproj": {
+                "projectPath": "C:\\Projects\\Midas\\Midas_MVC\\Midas_Data\\Midas_Data.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

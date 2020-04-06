@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Midas.ViewModels;
 using Midas_Models.BudgetBoard;
 using Midas_Service.Interfaces;
+using System;
+using System.Threading.Tasks;
 
 namespace Midas.Controllers
 {
@@ -31,9 +29,18 @@ namespace Midas.Controllers
         }
 
         // GET: BudgetBoard/Details/5
-        public ActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            var result = await _budgetBoardService.GetBudgetBoardById(id);
+            var expenseTotal = 0.0;
+            foreach (var expense in result.MonthlyExpenses)
+            {
+                expenseTotal += expense.BillAmount;
+            }
+
+            ViewBag.expenseTotal = expenseTotal;
+
+            return View(result);
         }
 
         // GET: BudgetBoard/Create

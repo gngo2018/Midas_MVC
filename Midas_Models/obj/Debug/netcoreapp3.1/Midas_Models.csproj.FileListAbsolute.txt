@@ -22,3 +22,6 @@ C:\Projects\Midas\Midas_MVC\Midas_Models\obj\Debug\netcoreapp3.1\Midas_Models.dl
 C:\Projects\Midas\Midas_MVC\Midas_Models\obj\Debug\netcoreapp3.1\Midas_Models.pdb
 C:\Projects\Midas\Midas_MVC\Midas_Models\obj\Debug\netcoreapp3.1\Midas_Models.genruntimeconfig.cache
 C:\Projects\Midas\Midas_MVC\Midas_Models\obj\Debug\netcoreapp3.1\Midas_Models.csproj.CoreCompileInputs.cache
+C:\Projects\Midas\Midas_MVC\Midas_Models\bin\Debug\netcoreapp3.1\Midas_Data.dll
+C:\Projects\Midas\Midas_MVC\Midas_Models\bin\Debug\netcoreapp3.1\Midas_Data.pdb
+C:\Projects\Midas\Midas_MVC\Midas_Models\obj\Debug\netcoreapp3.1\Midas_Models.csproj.CopyComplete

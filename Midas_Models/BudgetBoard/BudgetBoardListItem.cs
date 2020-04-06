@@ -7,6 +7,7 @@ namespace Midas_Models.BudgetBoard
 {
     public class BudgetBoardListItem
     {
+        public int BudgetBoardId { get; set; }
         [Display(Name = "Board Name")]
         public string BudgetBoardName { get; set; }
         [Display(Name = "Monthly Income")]

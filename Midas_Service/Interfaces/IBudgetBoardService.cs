@@ -10,5 +10,7 @@ namespace Midas_Service.Interfaces
     {
         Task<IEnumerable<BudgetBoardListItem>> GetBudgetBoards();
         Task<bool> CreateBudgetBoard(BudgetBoardCreate request);
+
+        Task<BudgetBoardDetailDTO> GetBudgetBoardById(int budgetBoardId);
     }
 }
