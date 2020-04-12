@@ -4,34 +4,66 @@
 @{
     ViewData["Title"] = "Details";
     var expenseTotal = ViewBag.expenseTotal;
-    var amountLeft = Model.LivingAmount - expenseTotal;
+    var livingAmountLeft = Model.LivingAmount - expenseTotal;
+    var leiserAmountLeft = Model.LeisureAmount;
+    var savingsAmountLeft = Model.SavingsAmount;
 }
 
-<div>
-    <h2>Board: @Model.BudgetBoardName</h2>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayName("Living Amount")
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.LivingAmount)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayName("Total After Expenses")
-        </dt>
-        <dd class="col-sm-10">
-            @string.Format("{0:C}", amountLeft)
-        </dd>
-    </dl>
-</div>
+    <div>
+        <h2>Board: @Model.BudgetBoardName</h2>
+        <hr />
+        <div class="row">
+            <dl class="row col-sm">
+                <dt class="col-sm-6">
+                    @Html.DisplayName("Living Amount")
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.LivingAmount)
+                </dd>
+                <dt class="col-sm-6">
+                    @Html.DisplayName("Total After Expenses")
+                </dt>
+                <dd class="col-sm-6">
+                    @string.Format("{0:C}", livingAmountLeft)
+                </dd>
+            </dl>
+            <dl class="row col-sm">
+                <dt class="col-sm-6">
+                    @Html.DisplayName("Savings Amount")
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.SavingsAmount)
+                </dd>
+                <dt class="col-sm-6">
+                    @Html.DisplayName("Total After Expenses")
+                </dt>
+                <dd class="col-sm-6">
+                    @string.Format("{0:C}", savingsAmountLeft)
+                </dd>
+            </dl>
+            <dl class="row col-sm">
+                <dt class="col-sm-6">
+                    @Html.DisplayName("Leisure Amount")
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.LeisureAmount)
+                </dd>
+                <dt class="col-sm-6">
+                    @Html.DisplayName("Total After Expenses")
+                </dt>
+                <dd class="col-sm-6">
+                    @string.Format("{0:C}", leiserAmountLeft)
+                </dd>
+            </dl>
+        </div>
+    </div>
 <div class="card">
     <div class="card-header">
         <h3>Monthly Expenses Total: $@expenseTotal</h3>
     </div>
-    <div class="card-body">
+    <div class="expense_table card-body">
         @if (Model.MonthlyExpenses.Any())
-        {<table class="table">
+        {<table class="table table-hover">
                 <thead>
                     <tr>
                         <th>
@@ -54,9 +86,13 @@
                                 @string.Format("{0:C}", expense.BillAmount)
                             </td>
                             <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = expense.MonthlyExpenseId }) |
-                                @Html.ActionLink("Details", "Details", new { id = expense.MonthlyExpenseId }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = expense.MonthlyExpenseId })
+                                <form asp-action="DeleteMonthlyExpense" asp-route-expenseId="@expense.MonthlyExpenseId" asp-route-budgetBoardId="@Model.BudgetBoardId" method="post">
+                                    @Html.ActionLink("Edit", "Edit", new { id = expense.MonthlyExpenseId }) |
+                                    @Html.ActionLink("Details", "ExpenseDetails", new { id = expense.MonthlyExpenseId }) |
+                                    <button type="submit" class="btn-link" onclick="return confirm('Are you sure you wish to delete this expense?'); ">
+                                        Delete
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     }
@@ -69,9 +105,10 @@
         }
     </div>
     <div class="card-footer">
-        <a asp-controller="#" asp-action="#" class="btn btn-primary" style="width:auto">Add Expense</a>
+        <partial name="~/Views/Shared/_AddMonthlyExpenseToBoard.cshtml" />
     </div>
 </div>
+
 <div>
     <a asp-action="Index">Back to List</a>
 </div>

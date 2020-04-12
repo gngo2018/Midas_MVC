@@ -22,7 +22,18 @@ namespace Midas_Service.Services
             _mapper = mapper;
         }
 
-        public async Task<bool> CreateMonthlyExpense(MonthlyExpenseListItem request)
+        public async Task<int> AddMonthlyExpenseToBudgetBoard(MonthlyExpenseModel request)
+        {
+            var entity = _mapper.Map<MonthlyExpense>(request);
+
+            await _midasContext.MonthlyExpense.AddAsync(entity);
+
+            await _midasContext.SaveChangesAsync();
+
+            return entity.MonthlyExpenseId;
+        }
+
+        public async Task<bool> CreateMonthlyExpense(MonthlyExpenseModel request)
         {
             var entity = _mapper.Map<MonthlyExpense>(request);
 
@@ -31,11 +42,11 @@ namespace Midas_Service.Services
             return await _midasContext.SaveChangesAsync() == 1;
         }
 
-        public async Task<IEnumerable<MonthlyExpenseListItem>> GetMonthlyExpenses()
+        public async Task<IEnumerable<MonthlyExpenseModel>> GetMonthlyExpenses()
         {
             var expenses = await _midasContext.MonthlyExpense.ToArrayAsync();
 
-            var response = _mapper.Map<IEnumerable<MonthlyExpenseListItem>>(expenses);
+            var response = _mapper.Map<IEnumerable<MonthlyExpenseModel>>(expenses);
 
             return response;
 

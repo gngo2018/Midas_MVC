@@ -22,6 +22,16 @@ namespace Midas_Service.Services
             _mapper = mapper;
         }
 
+        public async Task<IEnumerable<BudgetBoardListItem>> GetBudgetBoards()
+        {
+            var query = await _midasContext.BudgetBoard.ToArrayAsync();
+
+            var response = _mapper.Map<IEnumerable<BudgetBoardListItem>>(query);
+
+            return response;
+
+        }
+
         public async Task<bool> CreateBudgetBoard(BudgetBoardCreate request)
         {
             var fullRequest = CalculateTotalAmounts(request);
@@ -40,14 +50,14 @@ namespace Midas_Service.Services
             var budgetBoard = await _midasContext.BudgetBoard.FirstOrDefaultAsync(bb => bb.BudgetBoardId == budgetBoardId);
 
             //Query the Transaction table to see what Monthly Expenses are associated with a Budget Board
-            //MonthlyExpenseId to BudgetBoardId relationship
             var budgetBoardMonthlyExpenses = await _midasContext.BudgetBoardMonthlyExpense.Where(bbme => bbme.BudgetBoardId == budgetBoardId).ToArrayAsync();
             
-            //New list to store monthly expense data
+            //New list to store monthly expense data for mapping to the DTO
             var monthlyExpenses = new List<MonthlyExpense>();
 
             foreach (BudgetBoardMonthlyExpense entity in budgetBoardMonthlyExpenses)
             {
+                //Query the Monthly Expense Table to get table data
                 var expense = _midasContext.MonthlyExpense.FirstOrDefault(me => me.MonthlyExpenseId == entity.MonthlyExpenseId);
 
                 var newExpense = new MonthlyExpense
@@ -65,24 +75,14 @@ namespace Midas_Service.Services
                 BudgetBoardId = budgetBoard.BudgetBoardId,
                 BudgetBoardName = budgetBoard.BudgetBoardName,
                 LivingAmount = budgetBoard.LivingAmount,
+                SavingsAmount = budgetBoard.SavingsAmount,
+                LeisureAmount = budgetBoard.LeisureAmount,
                 MonthlyExpenses = monthlyExpenses
             };
 
             return dto;
 
         }
-
-        public async Task<IEnumerable<BudgetBoardListItem>> GetBudgetBoards()
-        {
-            var query = await _midasContext.BudgetBoard.ToArrayAsync();
-
-            var response = _mapper.Map<IEnumerable<BudgetBoardListItem>>(query);
-
-            return response;
-
-        }
-
-
 
         private BudgetBoardCreate CalculateTotalAmounts(BudgetBoardCreate request)
         {
@@ -95,6 +95,31 @@ namespace Midas_Service.Services
             request.LivingAmount = request.MonthlyIncome * livingPercentage;
 
             return request;
+        }
+
+        public async Task<bool> BoardExpenseTransaction(int boardId, int expenseId)
+        {
+            var transaction = new BudgetBoardMonthlyExpense
+            {
+                BudgetBoardId = boardId,
+                MonthlyExpenseId = expenseId
+            };
+
+            await _midasContext.BudgetBoardMonthlyExpense.AddAsync(transaction);
+
+            return await _midasContext.SaveChangesAsync() == 1;
+
+        }
+
+        public async Task<bool> DeleteExpenseTransaction(int expenseId)
+        {
+            var expenseBudgetBoard = await _midasContext.BudgetBoardMonthlyExpense.FirstOrDefaultAsync(e => e.MonthlyExpenseId == expenseId);
+            _midasContext.Remove(expenseBudgetBoard);
+
+            var expense = await _midasContext.MonthlyExpense.FirstOrDefaultAsync(e => e.MonthlyExpenseId == expenseId);
+            _midasContext.Remove(expense);
+
+            return await _midasContext.SaveChangesAsync() == 1;
         }
     }
 }

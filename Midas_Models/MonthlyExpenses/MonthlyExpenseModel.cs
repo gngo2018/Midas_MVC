@@ -5,8 +5,9 @@ using System.Text;
 
 namespace Midas_Models.MonthlyExpenses
 {
-    public class MonthlyExpenseListItem
+    public class MonthlyExpenseModel
     {
+        public int MonthlyExpenseId { get; set; }
         [Required]
         [Display(Name = "Bill Name")]
         public string BillName { get; set; }

@@ -9,8 +9,9 @@ namespace Midas_Service.Interfaces
 {
     public interface IMonthlyExpenseService
     {
-        Task<IEnumerable<MonthlyExpenseListItem>> GetMonthlyExpenses();
-        Task<bool> CreateMonthlyExpense(MonthlyExpenseListItem request);
+        Task<IEnumerable<MonthlyExpenseModel>> GetMonthlyExpenses();
+        Task<bool> CreateMonthlyExpense(MonthlyExpenseModel request);
+        Task<int> AddMonthlyExpenseToBudgetBoard(MonthlyExpenseModel request);
 
     }
 }

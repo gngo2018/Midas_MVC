@@ -12,8 +12,8 @@ namespace Midas.MappingProfiles
     {
         public MonthlyExpenseMappingProfile()
         {
-            CreateMap<MonthlyExpense, MonthlyExpenseListItem>();
-            CreateMap<MonthlyExpenseListItem, MonthlyExpense>();
+            CreateMap<MonthlyExpense, MonthlyExpenseModel>();
+            CreateMap<MonthlyExpenseModel, MonthlyExpense>();
         }
     }
 }

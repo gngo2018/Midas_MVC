@@ -52,7 +52,7 @@ namespace Midas.Controllers
         // POST: MonthlyExpense/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(MonthlyExpenseListItem request)
+        public async Task<IActionResult> Create(MonthlyExpenseModel request)
         {
             try
             {

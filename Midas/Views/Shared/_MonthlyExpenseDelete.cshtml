@@ -1,0 +1,35 @@
+﻿@using Midas_Models.BudgetBoard
+@model BudgetBoardDetailDTO
+
+@{
+    var monthlyExpenseId = ViewBag.monthlyExpenseId;
+}
+
+@*@Html.ActionLink("Delete", "DeleteMonthlyExpense", new { id = Model.MonthlyExpenseModel.MonthlyExpenseId }) |*@
+
+<a class="btn-link" data-toggle="modal" data-target="#exampleModalCenter" asp-route-id="@Model.MonthlyExpenseModel.MonthlyExpenseId">
+    Delete |
+</a>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"> Add Expense</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this expense?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <form asp-action="DeleteMonthlyExpense" asp-controller="BudgetBoard" asp-route-id="@monthlyExpenseId" method="post">
+                    <input type="submit" value="Delete" class="btn btn-danger" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
