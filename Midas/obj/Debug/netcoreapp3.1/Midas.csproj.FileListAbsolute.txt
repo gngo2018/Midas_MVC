@@ -368,3 +368,4 @@ C:\Projects\Midas\Midas_MVC\Midas\obj\Debug\netcoreapp3.1\Razor\Views\MonthlyExp
 C:\Projects\Midas\Midas_MVC\Midas\obj\Debug\netcoreapp3.1\Razor\Views\BudgetBoard\Details.cshtml.g.cs
 C:\Projects\Midas\Midas_MVC\Midas\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_AddMonthlyExpenseToBoard.cshtml.g.cs
 C:\Projects\Midas\Midas_MVC\Midas\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_MonthlyExpenseDelete.cshtml.g.cs
+C:\Projects\Midas\Midas_MVC\Midas\obj\Debug\netcoreapp3.1\Razor\Views\MonthlyBudgetBoard\Index.cshtml.g.cs

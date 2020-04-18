@@ -16,10 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="MonthlyBudgetBoard\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Midas_Data\Midas_Data.csproj" />
   </ItemGroup>
 

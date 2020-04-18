@@ -34,6 +34,7 @@ namespace Midas
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<IBudgetBoardService, BudgetBoardService>();
             services.AddScoped<IMonthlyExpenseService, MonthlyExpenseService>();
+            services.AddScoped<IMonthlyBudgetBoardService, MonthlyBudgetBoardService>();
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<MidasContext>();
