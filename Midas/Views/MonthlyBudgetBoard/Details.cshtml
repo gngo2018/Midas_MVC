@@ -1,0 +1,127 @@
+﻿@model Midas_Models.MonthlyBudgetBoard.MonthlyBudgetBoardDetail
+
+@{
+    ViewData["Title"] = "Details";
+    var expenseTotal = ViewBag.expenseTotal;
+    var livingAmountLeft = ViewBag.LivingAmount - ViewBag.LivingTotal;
+    var leiserAmountLeft = ViewBag.LeisureAmount - ViewBag.LeisureTotal;
+    var savingsAmountLeft = livingAmountLeft + leiserAmountLeft;
+}
+
+<div>
+    <h2>Month: @Model.MonthlyBudgetBoardName</h2>
+    <hr />
+    <div class="row">
+        <dl class="row col-sm">
+            <dt class="col-sm-6">
+                @Html.DisplayName("Living Amount")
+            </dt>
+            <dd class="col-sm-6">
+                @string.Format("{0:C}", ViewBag.LivingAmount)
+            </dd>
+            <dt class="col-sm-6">
+                @Html.DisplayName("Total After Expenses")
+            </dt>
+            <dd class="col-sm-6">
+                @string.Format("{0:C}", livingAmountLeft)
+            </dd>
+        </dl>
+        <dl class="row col-sm">
+            <dt class="col-sm-6">
+                @Html.DisplayName("Leisure Amount")
+            </dt>
+            <dd class="col-sm-6">
+                @string.Format("{0:C}", ViewBag.LeisureAmount)
+            </dd>
+            <dt class="col-sm-6">
+                @Html.DisplayName("Total After Expenses")
+            </dt>
+            <dd class="col-sm-6">
+                @string.Format("{0:C}", leiserAmountLeft)
+            </dd>
+        </dl>
+        <dl class="row col-sm">
+            <dt class="col-sm-6">
+                @Html.DisplayName("Savings Goal")
+            </dt>
+            <dd class="col-sm-6">
+                @string.Format("{0:C}", ViewBag.SavingsAmount)
+            </dd>
+            <dt class="col-sm-6">
+                @Html.DisplayName("Total Left")
+            </dt>
+            <dd class="col-sm-6">
+                @string.Format("{0:C}", savingsAmountLeft)
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h3>Total: $@expenseTotal</h3>
+    </div>
+    <div class="expense_table card-body">
+        @if (Model.ExpenseList.Any())
+        {<table class="table table-hover boardTable">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Name")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Amount")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Expense Type")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Date")
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var expense in Model.ExpenseList.OrderByDescending(e => e.ExpenseDate))
+                    {
+                        <tr>
+                            <td>
+                                @expense.ExpenseName
+                            </td>
+                            <td>
+                                @string.Format("{0:C}", expense.ExpenseAmount)
+                            </td>
+                            <td>
+                                @expense.ExpenseTypeName
+                            </td>
+                            <td>
+                                @string.Format("{0:d}", expense.ExpenseDate)
+                            </td>
+                            <td>
+                                <form asp-action="DeleteMonthlyExpense" asp-route-expenseId="@expense.ExpenseId" asp-route-budgetBoardId="@Model.MonthlyBudgetBoardId" method="post">
+                                    @Html.ActionLink("Edit", "Edit", new { id = expense.ExpenseId }) |
+                                    @Html.ActionLink("Details", "ExpenseDetails", new { id = expense.ExpenseId }) |
+                                    <button type="submit" class="btn-link" onclick="return confirm('Are you sure you wish to delete this expense?'); ">
+                                        Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <h5 class="card-title">No Expenses Have Been Added To This Board</h5>
+        }
+    </div>
+    <div class="card-footer">
+        <partial name="~/Views/Shared/_AddExpenseToMonthlyBoard.cshtml" />
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,49 @@
+﻿@using Midas_Models.MonthlyBudgetBoard
+@model MonthlyBudgetBoardDetail
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    Add Expense
+</button>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form asp-action="AddExpense">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle"> Add Expense</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input asp-for="MonthlyBudgetBoardId" type="hidden" />
+                    <div class="form-group">
+                        <label asp-for="ExpenseModel.ExpenseName" class="control-label"></label>
+                        <input asp-for="ExpenseModel.ExpenseName" class="form-control" />
+                        <span asp-validation-for="ExpenseModel.ExpenseName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ExpenseModel.ExpenseAmount" class="control-label"></label>
+                        <input asp-for="ExpenseModel.ExpenseAmount" class="form-control" />
+                        <span asp-validation-for="ExpenseModel.ExpenseAmount" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Expense Type</label>
+                        @Html.DropDownList("ExpenseModel.ExpenseTypeId", ViewBag.ExpenseType, "--Select Expense Type--", htmlAttributes: new { @class = "form-control" })
+                        <span asp-validation-for="ExpenseModel.ExpenseTypeId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Date</label>
+                        <input asp-for="ExpenseModel.ExpenseDate" type="date" class="form-control" />
+                        <span asp-validation-for="ExpenseModel.ExpenseDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

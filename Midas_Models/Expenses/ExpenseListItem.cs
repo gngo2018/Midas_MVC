@@ -13,6 +13,7 @@ namespace Midas_Models.Expenses
 
         public double ExpenseAmount { get; set; }
         public int ExpenseTypeId { get; set; }
+        public string ExpenseTypeName { get; set; }
         public DateTime ExpenseDate { get; set; }
     }
 }

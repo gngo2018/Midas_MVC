@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Midas_Data.Models;
+using Midas_Models.MonthlyBudgetBoard;
 using Midas_Service.Interfaces;
 
 namespace Midas.Controllers
@@ -11,10 +14,12 @@ namespace Midas.Controllers
     public class MonthlyBudgetBoardController : Controller
     {
         private readonly IMonthlyBudgetBoardService _monthlyBudgetService;
+        private readonly IBudgetBoardService _budgetBoardService;
 
-        public MonthlyBudgetBoardController(IMonthlyBudgetBoardService monthlyBudgetBoardService)
+        public MonthlyBudgetBoardController(IMonthlyBudgetBoardService monthlyBudgetBoardService, IBudgetBoardService budgetBoardService)
         {
             _monthlyBudgetService = monthlyBudgetBoardService;
+            _budgetBoardService = budgetBoardService;
         }
         // GET: MonthlyBudgetBoard
         public async Task<IActionResult> Index()
@@ -25,31 +30,69 @@ namespace Midas.Controllers
         }
 
         // GET: MonthlyBudgetBoard/Details/5
-        public ActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            var result = await _monthlyBudgetService.GetMonthlyBudgetBoardById(id);
+            var expenses = await _monthlyBudgetService.GetExpenseTypes();
+            var budgetBoard = await _budgetBoardService.GetBudgetBoardById(result.BudgetBoardId);
+            var expenseTypeList = new SelectList(expenses, "ExpenseTypeId", "ExpenseTypeName");
+            var expenseTotal = 0.0;
+            var livingExpenseTotal = 0.0;
+            var leisureExpenseTotal = 0.0;
+
+            foreach (var expense in result.ExpenseList)
+            {
+                expenseTotal += expense.ExpenseAmount;
+
+                if (expense.ExpenseTypeId == 1)
+                {
+                    livingExpenseTotal += expense.ExpenseAmount;
+                }
+
+                else if (expense.ExpenseTypeId == 3)
+                {
+                    leisureExpenseTotal += expense.ExpenseAmount;
+                }
+            };
+
+            ViewBag.expenseTotal = expenseTotal;
+            ViewBag.ExpenseType = expenseTypeList;
+
+            ViewBag.LeisureAmount = budgetBoard.LeisureAmount;
+            ViewBag.SavingsAmount = budgetBoard.SavingsAmount;
+            ViewBag.LivingAmount = budgetBoard.LivingAmount;
+
+            ViewBag.LeisureTotal = leisureExpenseTotal;
+            ViewBag.LivingTotal = livingExpenseTotal;
+
+            return View(result);
         }
 
         // GET: MonthlyBudgetBoard/Create
-        public ActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            var budgetBoards = await _budgetBoardService.GetBudgetBoards();
+            var boardList = new SelectList(budgetBoards, "BudgetBoardId", "BudgetBoardName");
+
+            ViewBag.BudgetBoard = boardList;
             return View();
         }
 
         // POST: MonthlyBudgetBoard/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create(MonthlyBudgetBoardCreate request)
         {
             try
             {
-                // TODO: Add insert logic here
+                await _monthlyBudgetService.CreateMonthlyBudgetBoard(request);
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                ModelState.AddModelError("", e.InnerException.Message);
+                return View(request);
             }
         }
 
@@ -96,6 +139,37 @@ namespace Midas.Controllers
             catch
             {
                 return View();
+            }
+        }
+
+        // POST: Add expense
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddExpense(MonthlyBudgetBoardDetail request)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+
+                var expense = new Expense
+                {
+                    ExpenseName = request.ExpenseModel.ExpenseName,
+                    ExpenseAmount = request.ExpenseModel.ExpenseAmount,
+                    ExpenseDate = request.ExpenseModel.ExpenseDate,
+                    ExpenseTypeId = request.ExpenseModel.ExpenseTypeId
+                };
+
+                var expenseId = await _monthlyBudgetService.AddExpenseToMonthlyBudgetBoard(expense);
+
+                var result = await _monthlyBudgetService.BoardExpenseTransaction(request.MonthlyBudgetBoardId, expenseId);
+
+                return RedirectToAction("Details", new { id = request.MonthlyBudgetBoardId });
+
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("", e.Message);
+                return View(request);
             }
         }
     }

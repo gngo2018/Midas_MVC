@@ -9,61 +9,61 @@
     var savingsAmountLeft = Model.SavingsAmount;
 }
 
-    <div>
-        <h2>Board: @Model.BudgetBoardName</h2>
-        <hr />
-        <div class="row">
-            <dl class="row col-sm">
-                <dt class="col-sm-6">
-                    @Html.DisplayName("Living Amount")
-                </dt>
-                <dd class="col-sm-6">
-                    @Html.DisplayFor(model => model.LivingAmount)
-                </dd>
-                <dt class="col-sm-6">
-                    @Html.DisplayName("Total After Expenses")
-                </dt>
-                <dd class="col-sm-6">
-                    @string.Format("{0:C}", livingAmountLeft)
-                </dd>
-            </dl>
-            <dl class="row col-sm">
-                <dt class="col-sm-6">
-                    @Html.DisplayName("Savings Amount")
-                </dt>
-                <dd class="col-sm-6">
-                    @Html.DisplayFor(model => model.SavingsAmount)
-                </dd>
-                <dt class="col-sm-6">
-                    @Html.DisplayName("Total After Expenses")
-                </dt>
-                <dd class="col-sm-6">
-                    @string.Format("{0:C}", savingsAmountLeft)
-                </dd>
-            </dl>
-            <dl class="row col-sm">
-                <dt class="col-sm-6">
-                    @Html.DisplayName("Leisure Amount")
-                </dt>
-                <dd class="col-sm-6">
-                    @Html.DisplayFor(model => model.LeisureAmount)
-                </dd>
-                <dt class="col-sm-6">
-                    @Html.DisplayName("Total After Expenses")
-                </dt>
-                <dd class="col-sm-6">
-                    @string.Format("{0:C}", leiserAmountLeft)
-                </dd>
-            </dl>
-        </div>
+<div>
+    <h2>Board: @Model.BudgetBoardName</h2>
+    <hr />
+    <div class="row">
+        <dl class="row col-sm">
+            <dt class="col-sm-6">
+                @Html.DisplayName("Living Amount")
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.LivingAmount)
+            </dd>
+            <dt class="col-sm-6">
+                @Html.DisplayName("Total After Expenses")
+            </dt>
+            <dd class="col-sm-6">
+                @string.Format("{0:C}", livingAmountLeft)
+            </dd>
+        </dl>
+        <dl class="row col-sm">
+            <dt class="col-sm-6">
+                @Html.DisplayName("Savings Amount")
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.SavingsAmount)
+            </dd>
+            <dt class="col-sm-6">
+                @Html.DisplayName("Total After Expenses")
+            </dt>
+            <dd class="col-sm-6">
+                @string.Format("{0:C}", savingsAmountLeft)
+            </dd>
+        </dl>
+        <dl class="row col-sm">
+            <dt class="col-sm-6">
+                @Html.DisplayName("Leisure Amount")
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.LeisureAmount)
+            </dd>
+            <dt class="col-sm-6">
+                @Html.DisplayName("Total After Expenses")
+            </dt>
+            <dd class="col-sm-6">
+                @string.Format("{0:C}", leiserAmountLeft)
+            </dd>
+        </dl>
     </div>
+</div>
 <div class="card">
     <div class="card-header">
         <h3>Monthly Expenses Total: $@expenseTotal</h3>
     </div>
     <div class="expense_table card-body">
         @if (Model.MonthlyExpenses.Any())
-        {<table class="table table-hover">
+        {<table class="table table-hover boardTable">
                 <thead>
                     <tr>
                         <th>

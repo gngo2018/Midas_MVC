@@ -76,8 +76,6 @@ namespace Midas_Data.Models
             {
                 entity.HasKey(e => e.MonthlyBudgetId);
 
-                entity.Property(e => e.MonthlyBudgetId).ValueGeneratedNever();
-
                 entity.Property(e => e.MonthlyBudgetName)
                     .IsRequired()
                     .HasMaxLength(25)
